@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<title>Date Validate</title>
+	</head>
+	<body>
+		<h1>Validador de idade</h1>
+		<div class="form">
+			<label>Sua data de nascimento</label>
+			<input type="date" id="datNas">
+			<button class="btn" id="env" onclick="ver()">verificar</button>
+		</div>
+		<p id="res"></p>
+		<script type="text/javascript">
+			function ver(){
+				let date = document.querySelector('#datNas');
+				if(date.value != ''){
+					//pegando valor da input date
+						let vl = date.valueAsDate; 
+						let dt = [
+							vl.getUTCDate(), //dia escrito no input 0
+							vl.getUTCMonth() + 1, //mês escrito no input 1
+							vl.getUTCFullYear() //ano escrito no input 2
+						];
+					
+					//tempo atual
+						const DateNow = Date.now();
+						const dateNow = new Date(DateNow);
+						const today = dateNow.toLocaleDateString();
+						let [day, month, year] = today.split('/');
+					
+					//verificando data
+						//verificando mes 2-aniversário passou /1-está no aniversário /0-aniversario não passou
+						var valMonth = 
+							dt[1]>month? 
+								2:(
+									dt[1]<month?
+										0:1
+								);
+						//verificando se já fez aniversario
+						var valDay = 
+							valMonth==2? 
+								true:(
+									valMonth==1? 
+										(
+											dt[0]>day? 
+												true:(
+													dt[0]<day? 
+														false:true
+													)
+										):false
+								);
+						//calculo de idade
+						const idade = 
+							valDay==true? 
+								(year-dt[2]):((year-1)-dt[2]);
+					
+					//mensagem final;
+						let idadeMini = 5;
+						let idadeMin = 10;
+						let idadeMax = 95;
+						//possibilidades de respostas
+						let pRes = [
+							idade+' anos, Você nem nasceu >:(',
+							idade+' anos, Você nem saberia ler x-x',
+							idade+' anos, pela sua infância você não deveria está por aqui, ?-?',
+							idade+' anos, Você Bem provavelmente nem está vivo ._.',
+							idade+' anos, é válido :)',
+							];
+						let menssage = 
+							idade < 0 ? 
+								pRes[0]:(
+									idade<idadeMin? 
+										( 
+											idade<idadeMini?
+												pRes[1]:pRes[2]
+										):(
+											idade>idadeMax? 
+												pRes[3]:pRes[4]
+										)
+								);
+						mens(menssage);
+				}else{
+					mens('Preencha corretamente a data');
+				}
+			}
+
+			function mens(text){
+				let div = document.querySelector('#res');
+				div.innerHTML = text;
+			}
+		</script>
+	</body>
+</html>
