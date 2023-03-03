@@ -30,33 +30,13 @@
 						const DateNow = Date.now();
 						const dateNow = new Date(DateNow);
 						const today = dateNow.toLocaleDateString();
-						let [day, month, year] = today.split('/').map(Number);
+						let [day, month, year] = today.split('/');
+						let dateNowAtl = "'"+year+"-"+month+"-"+day+"'";
+						const dtinput = "'"+dt[2]+"-"+dt[1]+"-"+dt[0]+"'";
 					
 					//verificando data
-						//verificando mes 2-aniversário passou /1-está no aniversário /0-aniversario não passou
-						var valMonth = 
-							dt[1]>month? 
-								2:(
-									dt[1]<month?
-										0:1
-								);
-						//verificando se já fez aniversario
-						var valDay = 
-							valMonth==2? 
-								true:(
-									valMonth==1? 
-										(
-											dt[0]>day? 
-												true:(
-													dt[0]<day? 
-														false:true
-													)
-										):false
-								);
-						//calculo de idade
-						const idade = 
-							valDay==true? 
-								(year-dt[2]):((year-1)-dt[2]);
+						const calc   = new Date(dateNowAtl) - new Date(dtinput);
+						const idade = Math.trunc(calc / (1000 * 60 * 60 * 24 * 30 * 12));
 					
 					//mensagem final;
 						let idadeMini = 5;
@@ -85,37 +65,29 @@
 					//felis aniversário?
 					let Name = document.querySelector('#name').value;
 					if (menssage==true){
-						let verMonth = 
-							dt[1]<month?
-								(month-dt[1]):(
-									dt[1]>month?
-										(12+(dt[1]-month)):0
-									);
-						let verDay = 
-							day>dt[0]?
-								(day-dt[0]):(
-										day<dt[0]?
-											(30+(dt[0]-day)):0
-									);
+						let dateNowAtl2 = "'"+year+"-"+month+"-"+day+"'";
+						const dtinput2 = "'"+year+"-"+dt[1]+"-"+dt[0]+"'";
+
+						const calc2   = new Date(dateNowAtl2)>new Date(dtinput2)? 
+							new Date(dateNowAtl2)-new Date(dtinput2)
+											:
+							new Date(dtinput2)-new Date(dateNowAtl2);
+
+						const verDay = Math.trunc(calc2 / (1000 * 60 * 60 * 24));
+						const verMonth = Math.trunc(calc2 / (1000 * 60 * 60 * 24 * 30));
 
 						let seg = [
-							verDay>0? (verDay>1? verDay+' dias':'1 dia'):false,
-							verMonth>0? (verMonth>1? verMonth+' meses':'1 mês'):false
+							verDay>1? verDay+' dias':'1 dia',
+							verMonth>1? verMonth+' meses': verMonth+' mês'
 						];
 						
-						let text = [
-							seg[1]+' ou aproximadamente '+(30*verMonth)+' dias',
-							seg[0],
-							seg[1]+' e '+seg[0]+' ou aproximadamente '+(verDay+(30*verMonth))+' dias'
-						];
-						
-						let textFinal = seg[0]==false? text[0]:(seg[1]==false? text[1]:text[2]);
 						let pTxt = [
-							'ainda falta '+textFinal,
-							'!!!'+Name+' Parábens pelo seu aniversário de '+idade+' Anos!!!'
+							'ainda falta '+seg[0]+' '+(verMonth>0? 'ou aproximadamente '+seg[1]:''),
+							'!!!'+Name+' Parábens pelo seu aniversário de '+idade+' Anos!!!',
+							'ainda falta um ano e, '+seg[0]+' '+(verMonth>0? 'ou aproximadamente '+seg[1]:'')
 						];
-						let calc = verDay + (30*verMonth);
-						let resut = calc>0? pTxt[0]:pTxt[1];
+
+						let resut = verDay>0? (new Date(dateNowAtl2)>new Date(dtinput2)? pTxt[2]:pTxt[0]):pTxt[1];
 
 						mens(resut);
 					}else{

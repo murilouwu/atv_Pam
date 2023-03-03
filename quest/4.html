@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<title>Coin Inflate</title>
+	</head>
+	<body>
+		<h1>Calculadora de inflação</h1>
+		<div class="form">
+			<p>
+				Escreva os valores, baseado numa comparação em duas moedas de suas escolhas, exemplo: quero ver a inflação do real, pesquiso os valores em relação ao dollar ou outra moeda, e vejo por aqui.
+			</p>
+			<input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="incCoin" placeholder="Valor inicial da moeda">
+			<input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="finCoin" placeholder="Valor atual da moeda">
+			<input type="number" min="0" id="mesAnl" placeholder="Periodo de Existência da Moeda(em meses)">
+			<label>Data para Previsão</label>
+			<input type="date" id="datFut">
+			<button class="btn" id="env" onclick="ver()">verificar</button>
+		</div>
+		<p id="res"></p>
+		<script type="text/javascript">
+			function ver(){
+				let date = document.querySelector('#datFut');
+				if(date.value != ''){
+					//pegando valor da input date
+						let vl = date.valueAsDate; 
+						let dt = [
+							vl.getUTCDate(), //dia escrito no input 0
+							vl.getUTCMonth() + 1, //mês escrito no input 1
+							vl.getUTCFullYear() //ano escrito no input 2
+						];
+					
+					//tempo atual
+						const DateNow = Date.now();
+						const dateNow = new Date(DateNow);
+						const today = dateNow.toLocaleDateString();
+						let [day, month, year] = today.split('/');
+						let dateNowAtl = "'"+year+"-"+month+"-"+day+"'";
+						const dtinput = "'"+dt[2]+"-"+dt[1]+"-"+dt[0]+"'";
+					
+					//verificando data
+						const calc   = new Date(dateNowAtl)<new Date(dtinput)? true:false;
+
+					if(calc==true){
+						let vlCoin = [
+							document.querySelector('#incCoin').value,
+							document.querySelector('#finCoin').value
+						];
+						let exist = document.querySelector('#mesAnl').value;
+
+						let porcent = ((vlCoin[1]-vlCoin[0])/vlCoin[0])/exist;
+						const calcA   = new Date(dtinput)-new Date(dateNowAtl);
+						const meses = Math.trunc(calcA / (1000 * 60 * 60 * 24 * 30));
+
+						let porCen = vlCoin[1]*porcent;
+						let vlRes = porcent<0?
+							(vlCoin[1]-(Math.abs(porCen)*meses))
+											:
+							(vlCoin[1]+(porCen*meses));
+
+						let txtFinal = 'Com uma média inflacionaria de '+(porcent*100).toFixed(2)+'%, no dia '+dt[0]+'/'+dt[1]+'/'+dt[2]+', daqui a '+meses+' meses/mês o valor dessa moeda será aproximademente '+Math.round(vlRes);
+						mens(txtFinal);
+					}else{
+						mens('Preencha com uma data futura, a data de previsão!!!');
+					};
+				}else{
+					mens('Preencha corretamente a data');
+				}
+			}
+
+			function mens(text){
+				let div = document.querySelector('#res');
+				div.innerHTML = text;
+			}
+		</script>
+	</body>
+</html>

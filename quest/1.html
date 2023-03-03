@@ -30,33 +30,13 @@
 						const dateNow = new Date(DateNow);
 						const today = dateNow.toLocaleDateString();
 						let [day, month, year] = today.split('/');
+						let dateNowAtl = "'"+year+"-"+month+"-"+day+"'";
+						const dtinput = "'"+dt[2]+"-"+dt[1]+"-"+dt[0]+"'";
 					
 					//verificando data
-						//verificando mes 2-aniversário passou /1-está no aniversário /0-aniversario não passou
-						var valMonth = 
-							dt[1]>month? 
-								2:(
-									dt[1]<month?
-										0:1
-								);
-						//verificando se já fez aniversario
-						var valDay = 
-							valMonth==2? 
-								true:(
-									valMonth==1? 
-										(
-											dt[0]>day? 
-												true:(
-													dt[0]<day? 
-														false:true
-													)
-										):false
-								);
-						//calculo de idade
-						const idade = 
-							valDay==true? 
-								(year-dt[2]):((year-1)-dt[2]);
-					
+						const calc   = new Date(dateNowAtl) - new Date(dtinput);
+						const idade = Math.trunc(calc / (1000 * 60 * 60 * 24 * 30 * 12));
+
 					//mensagem final;
 						let idadeMini = 5;
 						let idadeMin = 10;
