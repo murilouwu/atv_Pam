@@ -40,15 +40,15 @@
 			<div class="game" id="game">
 				<label class="lb" id="lbB" style="margin-left: -40vw;">Game</label>
 				<div class="casas">
-					<div id="casa0" class="case" style="border-width: 0px 3px 3px 0px;"></div>
-					<div id="casa1" class="case" style="border-width: 0px 3px 3px 3px;"></div>
-					<div id="casa2" class="case" style="border-width: 0px 0px 3px 3px;"></div>
-					<div id="casa3" class="case" style="border-width: 3px 3px 3px 0px;"></div>
-					<div id="casa4" class="case"></div>
-					<div id="casa5" class="case" style="border-width: 3px 0px 3px 3px;"></div>
-					<div id="casa6" class="case" style="border-width: 3px 3px 0px 0px;"></div>
-					<div id="casa7" class="case" style="border-width: 3px 3px 0px 3px;"></div>
-					<div id="casa8" class="case" style="border-width: 3px 0px 0px 3px;"></div>
+					<div id="casa0" class="case" style="border-width: 0px 3px 3px 0px;" onclick="Jogada('#casa0', 0)"></div>
+					<div id="casa1" class="case" style="border-width: 0px 3px 3px 3px;" onclick="Jogada('#casa1', 1)"></div>
+					<div id="casa2" class="case" style="border-width: 0px 0px 3px 3px;" onclick="Jogada('#casa2', 2)"></div>
+					<div id="casa3" class="case" style="border-width: 3px 3px 3px 0px;" onclick="Jogada('#casa3', 3)"></div>
+					<div id="casa4" class="case" onclick="Jogada('#casa4', 4)"></div>
+					<div id="casa5" class="case" style="border-width: 3px 0px 3px 3px;" onclick="Jogada('#casa5', 5)"></div>
+					<div id="casa6" class="case" style="border-width: 3px 3px 0px 0px;" onclick="Jogada('#casa6', 6)"></div>
+					<div id="casa7" class="case" style="border-width: 3px 3px 0px 3px;" onclick="Jogada('#casa7', 7)"></div>
+					<div id="casa8" class="case" style="border-width: 3px 0px 0px 3px;" onclick="Jogada('#casa8', 8)"></div>
 				</div>
 			</div>
 			<div class="Win" id="Win">
@@ -61,14 +61,53 @@
 				'',
 				''
 			];
+			const vlSimbols = [
+				'',
+				''
+			];
+			const matrizVelha = [
+				[false, false, false],
+				[false, false, false],
+				[false, false, false]
+			];
+			let radios = [
+				document.querySelector('#x'),
+				document.querySelector('#o'),
+			];
 			function play(){
 				indexcolorLb('#lb', ['#game', '#Players', '#Win'], 1);
-				players =[
-					document.querySelector('#nmPlA').value,
-					document.querySelector('#nmPlB').value
-				];
+				players[0] = document.querySelector('#nmPlA').value;
+				players[1] = document.querySelector('#nmPlB').value;
+
+				vlSimbols[0] = radios[0].checked? 'X':'O';
+				vlSimbols[1] = radios[1].checked? 'X':'O';
+
 				document.querySelector('#PlayerMoment').value = players[0];
-				document.querySelector('#LbPlayerMoment').value = 'Vez do jogador: '+players[0];
+				let label = document.querySelector('#LbPlayerMoment');
+				label.style.display= 'flex';
+				label.innerHTML = 'Vez do jogador: '+players[0];
+			}
+
+			function Jogada(id, poss){
+				let div = document.querySelector(id);
+				let pyAtNm = document.querySelector('#PlayerMoment');
+				let prPl = 0;
+				for(var i=0; i<players.length; i++) {
+					if(players[i]!=pyAtNm){
+						prPl = i;
+						break;
+					}
+				}
+
+				matrizVelha[poss] = true;
+				let label = document.querySelector('#LbPlayerMoment');
+				
+				if(div.innerHTML==''){
+					label.innerHTML = 'Vez do jogador: '+players[prPl];
+					div.innerHTML=
+				}else{
+					label.innerHTML = 'Vez do jogador: '+players[prPl]+', dessa vez click em uma aréa vazia';
+				}
 			}
 			function AdamCendler(id, lbA, lbB){
 				obj = document.querySelector(id);

@@ -87,6 +87,9 @@ body{
                 font-weight: bold;
                 font-family: cursive;
             }
+                .radiodiv label:hover{
+                    cursor: pointer;
+                }
                 .radio{
                     display: none;
                 }
@@ -107,11 +110,12 @@ body{
     .PlayerMoment{
         color: var(--corB);
         font-family: cursive;
-        font-size: 8vh;
+        font-size: 3vh;
         font-style: italic;
         padding: 1vh;
-        border-bottom: 5px solid var(--corD);
+        border-bottom: 2px solid var(--corD);
         margin-top: 74vh;
+        display: none;
     }
     .game{
         width: 61vw;
