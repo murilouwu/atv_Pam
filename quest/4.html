@@ -2,23 +2,24 @@
 <html>
 	<head>
 		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
-		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<link rel="stylesheet" type="text/css" href="../css/D.css">
 		<title>Coin Inflate</title>
 	</head>
 	<body>
-		<h1>Calculadora de inflação</h1>
+		<h1 class="title">Calculadora de inflação</h1>
 		<div class="form">
-			<p>
+			<i class="fa-sharp fa-solid fa-coins icon"></i>
+			<p class="coment">
 				Escreva os valores, baseado numa comparação em duas moedas de suas escolhas, exemplo: quero ver a inflação do real, pesquiso os valores em relação ao dollar ou outra moeda, e vejo por aqui.
 			</p>
-			<input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="incCoin" placeholder="Valor inicial da moeda">
-			<input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="finCoin" placeholder="Valor atual da moeda">
-			<input type="number" min="0" id="mesAnl" placeholder="Periodo de Existência da Moeda(em meses)">
-			<label>Data para Previsão</label>
-			<input type="date" id="datFut">
+			<input class="number" type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="incCoin" placeholder="Valor inicial da moeda">
+			<input class="number" type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" id="finCoin" placeholder="Valor atual da moeda">
+			<input class="number" type="number" min="0" id="mesAnl" placeholder="Periodo de Existência da Moeda(em meses)">
+			<label class="frmLabel">Data para Previsão</label>
+			<input type="date" id="datFut" class="datNas">
 			<button class="btn" id="env" onclick="ver()">verificar</button>
 		</div>
-		<p id="res"></p>
+		<p id="res" class="res"></p>
 		<script type="text/javascript">
 			function ver(){
 				let date = document.querySelector('#datFut');
@@ -58,20 +59,29 @@
 							(vlCoin[1]-(Math.abs(porCen)*meses))
 											:
 							(vlCoin[1]+(porCen*meses));
-
-						let txtFinal = 'Com uma média inflacionaria de '+(porcent*100).toFixed(2)+'%, no dia '+dt[0]+'/'+dt[1]+'/'+dt[2]+', daqui a '+meses+' meses/mês o valor dessa moeda será aproximademente '+Math.round(vlRes);
+						let txtFinal = 'Com uma média inflacionaria de '+(porcent*100).toFixed(2)+'%, no dia '+dt[0]+'/'+dt[1]+'/'+dt[2]+', daqui a '+meses+' meses/mês o valor dessa moeda será aproximademente '+vlRes;
 						mens(txtFinal);
+						Color('var(--corB)','var(--corA)','#res');
 					}else{
 						mens('Preencha com uma data futura, a data de previsão!!!');
+						Color('var(--corA)','var(--corB)','#res');
 					};
 				}else{
 					mens('Preencha corretamente a data');
+					Color('var(--corA)','var(--corB)','#res');
 				}
 			}
 
 			function mens(text){
 				let div = document.querySelector('#res');
+				div.style.display = 'flex';
 				div.innerHTML = text;
+			}
+			
+			function Color(back, text, id){
+				let div = document.querySelector(id);
+				div.style.background = back;
+				div.style.color = text;
 			}
 		</script>
 	</body>

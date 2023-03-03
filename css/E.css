@@ -1,0 +1,174 @@
+@import 'vars.css';
+
+body{
+    background-color: var(--corA);
+}
+.titles{
+    color: var(--corB);
+    font-family: cursive;
+    font-size: 8vh;
+    font-style: italic;
+    padding: 1vh;
+    margin-top: 1vh;
+    border-bottom: 5px solid var(--corD);
+    margin-bottom: 11vh;
+}
+.sistem{
+    width: 63VW;
+    height: 63vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(16 20 36 / 41%);
+    border-radius: 7px;
+    border: 3px solid var(--corE);
+}
+    .players{
+        position: absolute;
+        width: 61vw;
+        height: 53vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--corA);
+        border-radius: 7px;
+        z-index: 3;
+    }
+        .lb{
+            position: absolute;
+            color: var(--corA);
+            font-family: cursive;
+            font-size: 3vh;
+            font-style: italic;
+            padding: 1vh;
+            margin-top: -54vh;
+            margin-left: -49vw;
+            background-color: var(--corA);
+            border-radius: 7px;
+            width: 9vw;
+            text-align: center;
+            font-weight: bold;
+        }
+            .lbActive{
+                background-color: var(--corB);
+            }
+        .textInput{
+            font-size: 3vh;
+            background-color: var(--Invisible);
+            color: var(--corB);
+            border: 2px solid var(--corB);
+            padding: 1vh;
+            text-align: center;
+            width: 41vw;
+            font-family: cursive;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+            .textInput:hover{
+                cursor: text;
+            }
+        .radios{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 40vw;
+            height: 7vh;
+            margin-bottom: 3vh;
+            background-color: var(--corB);
+            margin-top: -0.2vh;
+        }
+            .radiodiv{
+                width: 17vw;
+                color: var(--corA);
+                font-size: 4vh;
+                font-weight: bold;
+                font-family: cursive;
+            }
+                .radio{
+                    display: none;
+                }
+        .btn{
+            background-color: var(--corB);
+            border: none;
+            width: 18vw;
+            height: 6vh;
+            border-radius: 5px;
+            font-size: 3vh;
+            font-weight: bold;
+            font-family: cursive;
+            margin-top: 1vh;
+        }
+            .btn:hover{
+                cursor: pointer;
+            }
+    .PlayerMoment{
+        color: var(--corB);
+        font-family: cursive;
+        font-size: 8vh;
+        font-style: italic;
+        padding: 1vh;
+        border-bottom: 5px solid var(--corD);
+        margin-top: 74vh;
+    }
+    .game{
+        width: 61vw;
+        height: 53vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--corA);
+        border-radius: 7px;
+        z-index: 2;
+        position: absolute;
+    }
+        .casas{
+            width: 35vw;
+            height: 42vh;
+            display: flex;
+            flex-flow: wrap;
+            justify-content: center;
+            background-color: rgb(12 20 28 / 48%);
+            border-radius: 7px;
+            padding: 4vh;
+        }
+        .case{
+            width: 7vw;
+            height: 4vw;
+            padding: 1vw;
+            border: 3px solid var(--corC);
+            margin-left: 1vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 10vh;
+            color: var(--corB);
+            font-family: cursive;
+            font-weight: bold;
+        }
+            .case:hover{
+                box-shadow: 0px 0px 50px var(--corC);
+            }
+    .Win{
+        width: 61vw;
+        height: 53vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--corA);
+        border-radius: 7px;
+        z-index: 1;
+        position: absolute;
+    }
+        .lb2{
+            color: var(--corB);
+            font-family: fantasy;
+            font-size: 4vh;
+            padding: 1vh;
+        }

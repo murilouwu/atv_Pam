@@ -1,0 +1,85 @@
+@import "vars.css";
+
+body{
+    background-color: var(--corA);
+}
+    .title{
+        color: var(--corB);
+        font-family: cursive;
+        font-size: 8vh;
+        font-style: italic;
+        padding: 1vh;
+        margin-top: 16vh;
+        border-bottom: 5px solid var(--corD);
+        margin-bottom: 6vh;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 41vw;
+        height: 24vh;
+        border: 2px solid var(--corD);
+        border-radius: 5px;
+    }
+        .icon{
+            color: var(--corB);
+            position: absolute;
+            z-index: 1;
+            font-size: 7vh;
+            margin-bottom: 25vh;
+        }
+        .frmLabel{
+            color: var(--corB);
+            font-family: fantasy;
+            font-size: 3vh;
+            padding: 1vh;
+        }
+        .datNas{
+            background-color: var(--corE);
+            width: 29vw;
+            height: 9vh;
+            border: none;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 4vh;
+            font-weight: bold;
+            font-family: cursive;
+            color: var(--corA);
+            opacity: 92%;
+        }
+            .datNas:hover:hover{
+                cursor: text;
+            }
+        .btn{
+            background-color: var(--corB);
+            border: none;
+            width: 10vw;
+            height: 5vh;
+            border-radius: 5px;
+            font-size: 2vh;
+            font-weight: bold;
+            font-family: cursive;
+            position: absolute;
+            margin-top: 34vh;
+        }
+            .btn:hover{
+                cursor: pointer;
+            }
+        .res{
+            background-color: var(--corA);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 75vw;
+            height: 18vh;
+            border: 2px solid var(--corD);
+            border-radius: 5px;
+            color: var(--corB);
+            font-family: cursive;
+            font-size: 3vh;
+            font-style: italic;
+            margin-top: 10vh;
+        }

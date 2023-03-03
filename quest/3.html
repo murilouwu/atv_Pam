@@ -2,21 +2,22 @@
 <html>
 	<head>
 		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
-		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<link rel="stylesheet" type="text/css" href="../css/C.css">
 		<title>Comemoration</title>
 	</head>
 	<body>
-		<h1>Comemorações</h1>
+		<h1 class="title">Comemorações</h1>
 		<div class="form">
-			<select id="datas">
+			<select id="datas" class="Select">
 				<option value="0">Ano Novo</option>
 				<option value="1">Dia das Bruxas</option>
 				<option value="2">Natal</option>
 				<option value="3">Fim De Ano</option>
+				<option value="4">Hoje</option>
 			</select>
 			<button class="btn" id="env" onclick="ver()">Enviar</button>
 		</div>
-		<p id="res"></p>
+		<p id="res" class="res"></p>
 		<script type="text/javascript">
 			function ver(){
 				let sel = document.querySelector('#datas');
@@ -34,12 +35,14 @@
 							month>10? "'"+(year+1)+"-10-31'" : year+"-10-31'",
 							"'"+year+"-12-25'",
 							"'"+year+"-12-31'",
+							hoje
 						];
 						let daysNames = [
 							sel.options[0].text,
 							sel.options[1].text,
 							sel.options[2].text,
-							sel.options[3].text
+							sel.options[3].text,
+							sel.options[4].text
 						];
 					//calc
 						const calc   = new Date(dias[sel.value]) - new Date(hoje);
@@ -61,6 +64,11 @@
 								"Feliz "+daysNames[sel.value]
 							;
 						mens(text);
+						if(Result>0){
+							Color('var(--corA)','var(--corB)','#res');
+						}else{
+							Color('var(--corB)','var(--corA)','#res');
+						}
 				}else{
 					mens('Selecione algo primer');
 				}
@@ -68,7 +76,14 @@
 
 			function mens(text){
 				let div = document.querySelector('#res');
+				div.style.display = 'flex';
 				div.innerHTML = text;
+			}
+			
+			function Color(back, text, id){
+				let div = document.querySelector(id);
+				div.style.background = back;
+				div.style.color = text;
 			}
 		</script>
 	</body>

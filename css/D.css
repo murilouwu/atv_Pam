@@ -1,0 +1,52 @@
+@import 'A.css';
+
+.form{
+    width: 79vw;
+    height: 42vh;
+    margin-top: -3vh;
+}
+    .coment{
+        background-color: var(--corA);
+        width: 49vw;
+        height: 7vh;
+        color: var(--corC);
+        font-family: cursive;
+        font-size: 2vh;
+        font-style: italic;
+    }
+    .number{
+        font-size: 2vh;
+        background-color: var(--Invisible);
+        color: var(--corB);
+        border: 2px solid var(--corB);
+        padding: 0.5vh;
+        text-align: center;
+        width: 58vw;
+        font-family: cursive;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-bottom: 2vh;
+    }
+        .number:hover{
+            cursor: text;
+        }
+    .frmLabel{
+        font-size: 2vh;
+    }
+    .datNas{
+        width: 67vw;
+        height: 5vh;
+        font-size: 3vh;
+    }
+    .btn{
+        margin-top: 44vh;
+    }
+    .icon{
+        margin-bottom: 0;
+        margin-top: -44vh;
+    }
+.res{
+    margin-bottom: 2vw;
+    height: 21vh;
+    padding: 1vh;
+}

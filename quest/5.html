@@ -2,26 +2,106 @@
 <html>
 	<head>
 		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
-		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<link rel="stylesheet" type="text/css" href="../css/E.css">
 		<title>Game the Velha</title>
 	</head>
 	<body>
-		<h1>Jogo da Velha</h1>
-		<div class="players">
-			<input type="text" name="nmPlA" placeholder="nome, jogador um">
-			<div>
-				<input type="radio" id="x" name="X">X
-				<input type="radio" id="o" name="O">O
+		<h1 class="titles">Jogo da Velha</h1>
+		<div class="sistem">
+			<div class="players" id="Players">
+				<label class="lb lbActive" id="lbA">Players</label>
+				<input type="text" id="nmPlA" placeholder="nome, jogador um" class="textInput">
+				<div class="radios">
+					<div class="radiodiv">
+						<input type="radio" id="x" name="X" onclick="AdamCendler('#ob','#lbx','#lbo')" class="radio">
+						<label for="x" id="lbx">X</label>
+					</div>
+					<div class="radiodiv">
+						<input type="radio" id="o" name="O" onclick="AdamCendler('#xa','#lbo','#lbx')" class="radio">
+						<label for="o" id="lbo">O</label>
+					</div>
+					
+				</div>
+				<input type="text" id="nmPlB" placeholder="nome, jogador dois" class="textInput">
+				<div class="radios">
+					<div class="radiodiv">
+						<input type="radio" id="xa" name="X" onclick="AdamCendler('#o','#lbxa','#lbob')" class="radio">
+						<label for="xa" id="lbxa">X</label>
+					</div>
+					<div class="radiodiv">
+						<input type="radio" id="ob" name="O" onclick="AdamCendler('#x','#lbob','#lbxa')" class="radio">
+						<label for="ob" id="lbob">O</label>
+					</div>
+				</div>
+				<button class="btn" id="env" onclick="play()">Play</button>
 			</div>
-			<input type="text" name="nmPlA" placeholder="nome, jogador dois">
-			<div>
-				<input type="radio" id="xa" name="X">X
-				<input type="radio" id="ob" name="O">O
+			<input type="text" id="PlayerMoment" value="" class="ocultar">
+			<label class="PlayerMoment" id="LbPlayerMoment"></label>
+			<div class="game" id="game">
+				<label class="lb" id="lbB" style="margin-left: -40vw;">Game</label>
+				<div class="casas">
+					<div id="casa0" class="case" style="border-width: 0px 3px 3px 0px;"></div>
+					<div id="casa1" class="case" style="border-width: 0px 3px 3px 3px;"></div>
+					<div id="casa2" class="case" style="border-width: 0px 0px 3px 3px;"></div>
+					<div id="casa3" class="case" style="border-width: 3px 3px 3px 0px;"></div>
+					<div id="casa4" class="case"></div>
+					<div id="casa5" class="case" style="border-width: 3px 0px 3px 3px;"></div>
+					<div id="casa6" class="case" style="border-width: 3px 3px 0px 0px;"></div>
+					<div id="casa7" class="case" style="border-width: 3px 3px 0px 3px;"></div>
+					<div id="casa8" class="case" style="border-width: 3px 0px 0px 3px;"></div>
+				</div>
 			</div>
-			<button class="btn" id="env" onclick="play()">Começar</button>
+			<div class="Win" id="Win">
+				<label class="lb" id="lbC" style="margin-left: -32vw;">Vencedor</label>
+				<label class="lb2">Name</label>
+			</div>
 		</div>
 		<script type="text/javascript">
-			
+			const players = [
+				'',
+				''
+			];
+			function play(){
+				indexcolorLb('#lb', ['#game', '#Players', '#Win'], 1);
+				players =[
+					document.querySelector('#nmPlA').value,
+					document.querySelector('#nmPlB').value
+				];
+				document.querySelector('#PlayerMoment').value = players[0];
+				document.querySelector('#LbPlayerMoment').value = 'Vez do jogador: '+players[0];
+			}
+			function AdamCendler(id, lbA, lbB){
+				obj = document.querySelector(id);
+				obj.click();
+				lbs = [
+					document.querySelector(lbA),
+					document.querySelector(lbB)
+				];
+				lbs[0].style.color = 'rgb(7 244 255)';
+				lbs[1].style.color = 'var(--corA)';
+			}
+			function indexcolorLb(lb, divs, lbes){
+				let Divs = [
+					document.querySelector(divs[0]),
+					document.querySelector(divs[1]),
+					document.querySelector(divs[2])
+				];
+				let lbs = [
+					document.querySelector(lb+'A'),
+					document.querySelector(lb+'B'),
+					document.querySelector(lb+'C')
+				];
+
+				Divs[0].style.zIndex = '3';
+				Divs[1].style.zIndex = '2';
+				Divs[2].style.zIndex = '1';
+				
+				lbs[0]. className = 'lb';
+				lbs[1]. className = 'lb';
+				lbs[2]. className = 'lb';
+
+				lbs[lbes]. className += ' lbActive';
+			};
 		</script>
 	</body>
 </html>

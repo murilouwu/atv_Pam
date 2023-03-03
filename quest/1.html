@@ -2,17 +2,18 @@
 <html>
 	<head>
 		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
-		<!--<link rel="stylesheet" type="text/css" href="../css/A.css">-->
+		<link rel="stylesheet" type="text/css" href="../css/A.css">
 		<title>Date Validate</title>
 	</head>
 	<body>
-		<h1>Validador de idade</h1>
+		<h1 class="title">Validador de idade</h1>
 		<div class="form">
-			<label>Sua data de nascimento</label>
-			<input type="date" id="datNas">
+			<i class="fa-sharp fa-solid fa-calendar-days icon"></i>
+			<label class="frmLabel">Sua data de nascimento:</label>
+			<input type="date" id="datNas" class="datNas">
 			<button class="btn" id="env" onclick="ver()">verificar</button>
 		</div>
-		<p id="res"></p>
+		<p id="res" class="res"></p>
 		<script type="text/javascript">
 			function ver(){
 				let date = document.querySelector('#datNas');
@@ -62,6 +63,11 @@
 										)
 								);
 						mens(menssage);
+						if(idade<idadeMin || idade>idadeMax){
+							Color('var(--corA)','var(--corB)','#res');
+						}else{
+							Color('var(--corB)','var(--corA)','#res');
+						}
 				}else{
 					mens('Preencha corretamente a data');
 				}
@@ -69,7 +75,13 @@
 
 			function mens(text){
 				let div = document.querySelector('#res');
+				div.style.display = 'flex';
 				div.innerHTML = text;
+			}
+			function Color(back, text, id){
+				let div = document.querySelector(id);
+				div.style.background = back;
+				div.style.color = text;
 			}
 		</script>
 	</body>

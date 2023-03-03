@@ -1,0 +1,22 @@
+@import 'A.css';
+
+.form{
+   width: 29vw;
+   height: 16vh;
+}
+.Select{
+    font-size: 3vh;
+    background-color: var(--Invisible);
+    color: var(--corB);
+    border: 2px solid var(--corB);
+    padding: 1vh;
+    text-align: center;
+    width: 20vw;
+    font-family: cursive;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn{
+    margin-top: 17vh;
+}
