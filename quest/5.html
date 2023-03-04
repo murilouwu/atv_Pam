@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<h1 class="titles">Jogo da Velha</h1>
+		<i class="fa-solid fa-gamepad icon"></i>
 		<div class="sistem">
 			<div class="players" id="Players">
 				<label class="lb lbActive" id="lbA">Players</label>
@@ -53,7 +54,8 @@
 			</div>
 			<div class="Win" id="Win">
 				<label class="lb" id="lbC" style="margin-left: -32vw;">Vencedor</label>
-				<label class="lb2">Name</label>
+				<label class="lb2" id="lb2C"></label>
+				<i class="fa-solid fa-rotate-right icon2" onclick="restart()"></i>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -66,9 +68,9 @@
 				''
 			];
 			const matrizVelha = [
-				[false, false, false],
-				[false, false, false],
-				[false, false, false]
+				['', '', ''],
+				['', '', ''],
+				['', '', '']
 			];
 			let radios = [
 				document.querySelector('#x'),
@@ -91,22 +93,27 @@
 			function Jogada(id, poss){
 				let div = document.querySelector(id);
 				let pyAtNm = document.querySelector('#PlayerMoment');
-				let prPl = 0;
-				for(var i=0; i<players.length; i++) {
-					if(players[i]!=pyAtNm){
-						prPl = i;
-						break;
-					}
-				}
-
-				matrizVelha[poss] = true;
+				let ingPl = pyAtNm.value==players[0]? 1:0;
+				let atPl = ingPl==0? 1:0;
+				
 				let label = document.querySelector('#LbPlayerMoment');
 				
-				if(div.innerHTML==''){
-					label.innerHTML = 'Vez do jogador: '+players[prPl];
-					div.innerHTML=
+				let confirm = div.innerHTML==''? true:false;
+				if(confirm==true){
+					let pX = poss>2? (poss>5? (poss-6):(poss-3)):poss;
+					let pY = poss>2? (poss>5? 2:1):0;
+
+					matrizVelha[pX][pY] = vlSimbols[atPl];
+					label.innerHTML = 'Vez do jogador: '+players[ingPl];
+					div.innerHTML = vlSimbols[atPl];
+					pyAtNm.value = players[ingPl];
+					
+					let color = vlSimbols[atPl]=='X'? 'var(--corB)':'var(--corE)';
+					div.style.color = color;
+
+					velhaRule(vlSimbols[atPl], players[atPl]);
 				}else{
-					label.innerHTML = 'Vez do jogador: '+players[prPl]+', dessa vez click em uma aréa vazia';
+					label.innerHTML = 'Vez do jogador: '+players[atPl]+', dessa vez click em uma aréa vazia';
 				}
 			}
 			function AdamCendler(id, lbA, lbB){
@@ -141,6 +148,110 @@
 
 				lbs[lbes]. className += ' lbActive';
 			};
+			
+			function Vitory(pl){
+				let label = document.querySelector('#LbPlayerMoment');
+				label.innerHTML= 'Espere uns segundos';
+				setTimeout(
+					()=> {
+						indexcolorLb('#lb', ['#Win', '#game','#Players'], 2);
+						let lb = document.querySelector('#lb2C');
+						lb.innerHTML = 'Parabés '+pl+', Vc Venceu';
+						label.display= 'none';
+					},
+				1000);
+			}
+			
+			function velhaRule(Sim, pl){
+				let Win = false;
+				if(
+					/*
+						X / X / X
+						---------
+						0 / 0 / 0
+						---------
+						0 / 0 / 0  v
+					*/
+					(matrizVelha[0][0]==Sim && matrizVelha[0][1]==Sim && matrizVelha[0][2]==Sim)
+													||
+					/*
+						0 / 0 / 0
+						---------
+						X / X / X
+						---------
+						0 / 0 / 0  v
+					*/
+					(matrizVelha[1][0]==Sim && matrizVelha[1][1]==Sim && matrizVelha[1][2]==Sim)
+													||
+					/*
+						0 / 0 / 0
+						---------
+						0 / 0 / 0
+						---------
+						X / X / X  v
+					*/
+					(matrizVelha[2][0]==Sim && matrizVelha[2][1]==Sim && matrizVelha[2][2]==Sim)
+													||					
+					/*
+						X / 0 / 0
+						---------
+						X / 0 / 0
+						---------
+						X / 0 / 0  v 
+					*/
+					(matrizVelha[0][0]==Sim && matrizVelha[1][0]==Sim && matrizVelha[2][0]==Sim)
+													||
+					/*
+						0 / X / 0
+						---------
+						0 / X / 0
+						---------
+						0 / X / 0  v
+					*/
+					(matrizVelha[0][1]==Sim && matrizVelha[1][1]==Sim && matrizVelha[2][1]==Sim)
+													||
+					/*
+						0 / 0 / X
+						---------
+						0 / 0 / X
+						---------
+						0 / 0 / X  v
+					*/
+					(matrizVelha[0][2]==Sim && matrizVelha[1][2]==Sim && matrizVelha[2][2]==Sim)
+													||
+					/*
+						X / 0 / 0
+						---------
+						0 / X / 0
+						---------
+						0 / 0 / X  v
+					*/
+					(matrizVelha[0][0]==Sim && matrizVelha[1][1]==Sim && matrizVelha[2][2]==Sim)
+													||
+					/*
+						0 / 0 / X
+						---------
+						0 / X / 0
+						---------
+						X / 0 / 0  v
+					*/
+					(matrizVelha[0][2]==Sim && matrizVelha[1][1]==Sim && matrizVelha[0][2]==Sim)
+				){
+					Win = true;
+				}
+
+				if(Win==true){
+					Vitory(pl);
+				}
+			}
+
+			function restart(){
+				setTimeout(
+					()=> {
+						window.location = '5.html'
+					}, 
+				500);
+			}
 		</script>
 	</body>
 </html>
