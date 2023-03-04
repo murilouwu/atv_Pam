@@ -103,7 +103,7 @@
 					let pX = poss>2? (poss>5? (poss-6):(poss-3)):poss;
 					let pY = poss>2? (poss>5? 2:1):0;
 
-					matrizVelha[pX][pY] = vlSimbols[atPl];
+					matrizVelha[pY][pX] = vlSimbols[atPl];
 					label.innerHTML = 'Vez do jogador: '+players[ingPl];
 					div.innerHTML = vlSimbols[atPl];
 					pyAtNm.value = players[ingPl];
@@ -156,14 +156,14 @@
 					()=> {
 						indexcolorLb('#lb', ['#Win', '#game','#Players'], 2);
 						let lb = document.querySelector('#lb2C');
-						lb.innerHTML = 'Parabés '+pl+', Vc Venceu';
+						lb.innerHTML = 'Parabés '+pl+', Venceu';
 						label.display= 'none';
 					},
 				1000);
 			}
 			
 			function velhaRule(Sim, pl){
-				let Win = false;
+				let Win = 0;
 				if(
 					/*
 						X / X / X
@@ -172,7 +172,7 @@
 						---------
 						0 / 0 / 0  v
 					*/
-					(matrizVelha[0][0]==Sim && matrizVelha[0][1]==Sim && matrizVelha[0][2]==Sim)
+					(matrizVelha[0][0]===Sim && matrizVelha[0][1]===Sim && matrizVelha[0][2]===Sim)
 													||
 					/*
 						0 / 0 / 0
@@ -181,7 +181,7 @@
 						---------
 						0 / 0 / 0  v
 					*/
-					(matrizVelha[1][0]==Sim && matrizVelha[1][1]==Sim && matrizVelha[1][2]==Sim)
+					(matrizVelha[1][0]===Sim && matrizVelha[1][1]===Sim && matrizVelha[1][2]===Sim)
 													||
 					/*
 						0 / 0 / 0
@@ -190,7 +190,7 @@
 						---------
 						X / X / X  v
 					*/
-					(matrizVelha[2][0]==Sim && matrizVelha[2][1]==Sim && matrizVelha[2][2]==Sim)
+					(matrizVelha[2][0]===Sim && matrizVelha[2][1]===Sim && matrizVelha[2][2]===Sim)
 													||					
 					/*
 						X / 0 / 0
@@ -199,7 +199,7 @@
 						---------
 						X / 0 / 0  v 
 					*/
-					(matrizVelha[0][0]==Sim && matrizVelha[1][0]==Sim && matrizVelha[2][0]==Sim)
+					(matrizVelha[0][0]===Sim && matrizVelha[1][0]===Sim && matrizVelha[2][0]===Sim)
 													||
 					/*
 						0 / X / 0
@@ -208,7 +208,7 @@
 						---------
 						0 / X / 0  v
 					*/
-					(matrizVelha[0][1]==Sim && matrizVelha[1][1]==Sim && matrizVelha[2][1]==Sim)
+					(matrizVelha[0][1]===Sim && matrizVelha[1][1]===Sim && matrizVelha[2][1]===Sim)
 													||
 					/*
 						0 / 0 / X
@@ -217,7 +217,7 @@
 						---------
 						0 / 0 / X  v
 					*/
-					(matrizVelha[0][2]==Sim && matrizVelha[1][2]==Sim && matrizVelha[2][2]==Sim)
+					(matrizVelha[0][2]===Sim && matrizVelha[1][2]===Sim && matrizVelha[2][2]===Sim)
 													||
 					/*
 						X / 0 / 0
@@ -226,7 +226,7 @@
 						---------
 						0 / 0 / X  v
 					*/
-					(matrizVelha[0][0]==Sim && matrizVelha[1][1]==Sim && matrizVelha[2][2]==Sim)
+					(matrizVelha[0][0]===Sim && matrizVelha[1][1]===Sim && matrizVelha[2][2]===Sim)
 													||
 					/*
 						0 / 0 / X
@@ -235,13 +235,23 @@
 						---------
 						X / 0 / 0  v
 					*/
-					(matrizVelha[0][2]==Sim && matrizVelha[1][1]==Sim && matrizVelha[0][2]==Sim)
+					(matrizVelha[0][2]===Sim && matrizVelha[1][1]===Sim && matrizVelha[0][2]===Sim)
 				){
-					Win = true;
+					Win = 1;
+				}else if(!
+					(
+						matrizVelha[0][0]=='' || matrizVelha[0][1]=='' || matrizVelha[0][2]==''
+						|| matrizVelha[1][0]=='' || matrizVelha[1][1]=='' || matrizVelha[1][2]==''
+						|| matrizVelha[2][0]=='' || matrizVelha[2][1]=='' || matrizVelha[2][2]==''
+					)
+				){
+					Win = 2;
 				}
 
-				if(Win==true){
+				if(Win==1){
 					Vitory(pl);
+				}else if(Win==2){
+					Vitory('ninguem');
 				}
 			}
 
