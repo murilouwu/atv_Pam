@@ -74,20 +74,26 @@
 			];
 			let radios = [
 				document.querySelector('#x'),
-				document.querySelector('#o'),
+				document.querySelector('#o')
 			];
 			function play(){
-				indexcolorLb('#lb', ['#game', '#Players', '#Win'], 1);
-				players[0] = document.querySelector('#nmPlA').value;
-				players[1] = document.querySelector('#nmPlB').value;
+				if(!radios[0].checked && !radios[1].checked){
+					let label = document.querySelector('#LbPlayerMoment');
+					label.style.display= 'flex';
+					label.innerHTML = 'Escolha, X ou O primeiramente';
+				}else{
+					indexcolorLb('#lb', ['#game', '#Players', '#Win'], 1);
+					players[0] = document.querySelector('#nmPlA').value;
+					players[1] = document.querySelector('#nmPlB').value;
 
-				vlSimbols[0] = radios[0].checked? 'X':'O';
-				vlSimbols[1] = radios[1].checked? 'X':'O';
+					vlSimbols[0] = radios[0].checked? 'X':'O';
+					vlSimbols[1] = radios[1].checked? 'X':'O';
 
-				document.querySelector('#PlayerMoment').value = players[0];
-				let label = document.querySelector('#LbPlayerMoment');
-				label.style.display= 'flex';
-				label.innerHTML = 'Vez do jogador: '+players[0];
+					document.querySelector('#PlayerMoment').value = players[0];
+					let label = document.querySelector('#LbPlayerMoment');
+					label.style.display= 'flex';
+					label.innerHTML = 'Vez do jogador: <b style="color:var(--corE)"> '+players[0]+' </b>';
+				}
 			}
 
 			function Jogada(id, poss){
@@ -104,7 +110,7 @@
 					let pY = poss>2? (poss>5? 2:1):0;
 
 					matrizVelha[pY][pX] = vlSimbols[atPl];
-					label.innerHTML = 'Vez do jogador: '+players[ingPl];
+					label.innerHTML = 'Vez do jogador: <b style="color:var(--corE)">'+players[ingPl]+'</b>';
 					div.innerHTML = vlSimbols[atPl];
 					pyAtNm.value = players[ingPl];
 					
@@ -113,7 +119,7 @@
 
 					velhaRule(vlSimbols[atPl], players[atPl]);
 				}else{
-					label.innerHTML = 'Vez do jogador: '+players[atPl]+', dessa vez click em uma aréa vazia';
+					label.innerHTML = 'Vez do jogador: <b style="color:var(--corE)">'+players[atPl]+'</b>, dessa vez click em uma aréa vazia';
 				}
 			}
 			function AdamCendler(id, lbA, lbB){
@@ -156,8 +162,8 @@
 					()=> {
 						indexcolorLb('#lb', ['#Win', '#game','#Players'], 2);
 						let lb = document.querySelector('#lb2C');
-						lb.innerHTML = 'Parabés '+pl+', Venceu';
-						label.display= 'none';
+						lb.innerHTML = 'Parabés <b style="color:var(--corE)">'+pl+'</b>, Venceu';
+						label.innerHTML = '';
 					},
 				1000);
 			}
