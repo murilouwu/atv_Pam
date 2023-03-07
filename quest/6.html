@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="../css/F.css">
+		<title>Notas</title>
+	</head>
+	<body>
+		<h1 class="titles">Medias</h1>
+        <i class="fa-solid fa-check icon"></i>
+		<div class="sistem">
+			<div class="definic">
+                <label class="lb lbActive" id="labelA">Stage 1</label>
+                <label class="title">Definir Sala:</label>
+                <i class="fa-solid fa-graduation-cap iconsimbolic"></i>
+                <input type="num" id="nrmalun" min="0" class="Input" placeholder="Numero de Alunos">
+                <input type="num" id="nrmalun" min="0" class="Input" placeholder="Numero de Notas por Aluno">
+                <p class="palagrafy">media 7, nota de 0 a 10</p>
+                <button class="btn">Próximo Passo</button>
+            </div>
+            <div class="addBd">
+                <label class="lb" id="labelB" style="margin-left: -40vw;">Stage 2</label>
+                <div class="form" id="inputs">
+
+                </div>
+                <button class="btn">Próximo Passo</button>
+                <button class="btn">Voltar</button>
+            </div>
+            <div class="resultTab">
+                <label class="lb" id="labelC" style="margin-left: -32vw;">Stage 3</label>
+                <div class="table" id="table">
+
+                </div>
+                <div class="pages" id="pages">
+
+                </div>
+                <button class="btn">Voltar</button>
+            </div>
+		</div>
+		<script type="text/javascript">
+            const media = 7.0;
+            let alunos = [];
+            let medias = [[]];
+			function indexcolorLb(lb, divs, lbes){
+				let Divs = [
+					document.querySelector(divs[0]),
+					document.querySelector(divs[1]),
+					document.querySelector(divs[2])
+				];
+				let lbs = [
+					document.querySelector(lb+'A'),
+					document.querySelector(lb+'B'),
+					document.querySelector(lb+'C')
+				];
+
+				Divs[0].style.zIndex = '3';
+				Divs[1].style.zIndex = '2';
+				Divs[2].style.zIndex = '1';
+				
+				lbs[0]. className = 'lb';
+				lbs[1]. className = 'lb';
+				lbs[2]. className = 'lb';
+
+				lbs[lbes]. className += ' lbActive';
+			};
+		</script>
+	</body>
+</html>

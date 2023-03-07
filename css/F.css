@@ -1,0 +1,38 @@
+@import 'E.css';
+
+.definic{
+    position: absolute;
+    width: 61vw;
+    height: 53vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--corA);
+    border-radius: 7px;
+    z-index: 3;
+}
+.addBd{
+    width: 61vw;
+    height: 53vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--corA);
+    border-radius: 7px;
+    z-index: 2;
+    position: absolute;
+}
+.resultTab{
+    width: 61vw;
+    height: 53vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--corA);
+    border-radius: 7px;
+    z-index: 1;
+    position: absolute;
+}
