@@ -12,6 +12,40 @@
     border-radius: 7px;
     z-index: 3;
 }
+    .definic .title{
+        color: var(--corB);
+        font-family: fantasy;
+        font-size: 4vh;
+        padding: 1vh;
+    }
+    .definic .iconsimbolic{
+        color: var(--corB);
+        z-index: 1;
+        font-size: 8vh;
+    }
+    .definic .Input{
+        font-size: 3vh;
+        background-color: var(--Invisible);
+        color: var(--corB);
+        border: 2px solid var(--corB);
+        padding: 1vh;
+        text-align: center;
+        width: 41vw;
+        font-family: cursive;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-bottom: 1vh;
+    }
+        .definic .Input:hover{
+            cursor: text;
+        }
+    .definic .palagrafy{
+        color: var(--corB);
+        font-family: cursive;
+        font-size: 2vh;
+        padding: 1vh;
+        font-weight: bold;
+    }
 .addBd{
     width: 61vw;
     height: 53vh;
@@ -24,6 +58,30 @@
     z-index: 2;
     position: absolute;
 }
+    .addBd .form{
+
+    }
+        .Card{
+
+        }
+            .CardNmInput{
+
+            }
+                .CardNmInput:hover{
+                    cursor: pointer;    
+                }
+            .btnCard{
+
+            }
+                .btnCard:hover{
+                    cursor: pointer;    
+                }
+            .notas{
+
+            }
+                .CardNtInput{
+                    
+                }
 .resultTab{
     width: 61vw;
     height: 53vh;
