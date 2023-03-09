@@ -1,5 +1,8 @@
 @import 'E.css';
-
+::-webkit-scrollbar{
+  width: 2px;
+  height: 10px;
+}
 .definic{
     position: absolute;
     width: 61vw;
@@ -55,32 +58,69 @@
     justify-content: center;
     background-color: var(--corA);
     border-radius: 7px;
-    z-index: 2;
+    z-index: 52;
     position: absolute;
 }
     .addBd .form{
-
+        background-color: rgb(9 10 12 / 28%);
+        width: 54vw;
+        height: 24vh;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        overflow-y: overlay;
+        padding: 1vh;
+        border-radius: 4px;
     }
         .Card{
-
+            display: flex;
+            width: 19vw;
+            flex-direction: column;
+            margin: 2vh;
+            height: 18vh;
+            background-color: var(--corA);
+            border-radius: 5px;
+            padding: 1vh;
+            align-items: center;
         }
             .CardNmInput{
-
+                font-size: 2vh;
+                background-color: var(--Invisible);
+                color: var(--corB);
+                border: 1px solid var(--corB);
+                padding: 0.5vh;
+                text-align: center;
+                width: 18vw;
+                font-family: cursive;
+                font-weight: bold;
+                border-radius: 3px;
+                margin-bottom: 1vh;
             }
                 .CardNmInput:hover{
                     cursor: pointer;    
                 }
             .btnCard{
-
+                background-color: var(--corB);
+                border: none;
+                width: 8vw;
+                height: 4vh;
+                border-radius: 5px;
+                font-size: 2vh;
+                font-weight: bold;
+                font-family: cursive;
             }
                 .btnCard:hover{
                     cursor: pointer;    
                 }
             .notas{
-
+                display: flex;
+                width: 17vw;
+                flex-direction: column;
+                margin-top: 1vh;
+                overflow-y: overlay;
             }
                 .CardNtInput{
-                    
+                    display: flex;     
                 }
 .resultTab{
     width: 61vw;

@@ -16,7 +16,7 @@
                 <input type="number" id="nrmalun" min="1" class="Input" placeholder="Numero de Alunos">
                 <input type="number" id="nrmnotas" min="1" class="Input" placeholder="Numero de Notas por Aluno">
                 <p class="palagrafy">media 7, nota de 0 a 10</p>
-                <button class="btn" onclick="formInc()">Próximo Passo</button>
+                <button class="btn" onclick="FormInc()">Próximo Passo</button>
             </div>
             <div class="addBd" id="addBd">
                 <label class="lb" id="labelB" style="margin-left: -40vw;">Stage 2</label>
@@ -27,12 +27,6 @@
                 		<div class="notas" id="">
                 			<input type="text" id="Nm0nt0" placeholder="Nota 1" class="CardNtInput">
                 			<input type="text" id="Nm0nt1" placeholder="Nota 2" class="CardNtInput">
-                		</div>
-                	</div>
-                	<div class="Card">
-                		<input type="text" id="Nome0" placeholder="Nome do aluno" class="CardNmInput">
-                		<button class="btnCard" onclick="">Definir Notas</button>
-                		<div class="notas" id="">
                 			<input type="text" id="Nm0nt0" placeholder="Nota 1" class="CardNtInput">
                 			<input type="text" id="Nm0nt1" placeholder="Nota 2" class="CardNtInput">
                 		</div>
@@ -55,10 +49,10 @@
 		<script type="text/javascript">
             const media = 7.0;
             let alunos = [];
-            let medias = [[]];
+            let notas = [[]];
 			let qt = [
-				'aluno'=> 0,
-				'nota'=> 0
+				0,
+				0
 			];
 			function indexcolorLb(lb, divs, lbes){
 				let Divs = [
@@ -83,10 +77,24 @@
 				lbs[lbes]. className += ' lbActive';
 			};
 
-			function formInc(){
+			function FormInc(){
 				indexcolorLb('#label', ['#addBd', '#definic', '#resultTab'], 1);
-				qt['aluno'] = document.querySelector('#nrmalun').value;
-				qt['nota'] = document.querySelector('#nrmnotas').value;
+				//alunos
+				qt[0] = document.querySelector('#nrmalun').value ==''? 1:document.querySelector('#nrmalun').value;
+				//notas
+				qt[1] = document.querySelector('#nrmnotas').value ==''? 1:document.querySelector('#nrmnotas').value;
+
+				for (var i=0; i<qt[0]; i++) {
+					var num = i+1;
+
+					alert(num);
+				};
+
+				for (var i=0; i<qt[1]; i++) {
+					var num2 = i+1;
+
+					alert(num2);
+				};
 			}
 		</script>
 	</body>
