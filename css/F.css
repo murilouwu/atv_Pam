@@ -58,7 +58,7 @@
     justify-content: center;
     background-color: var(--corA);
     border-radius: 7px;
-    z-index: 52;
+    z-index: 2;
     position: absolute;
 }
     .addBd .form{
@@ -102,7 +102,7 @@
             .btnCard{
                 background-color: var(--corB);
                 border: none;
-                width: 8vw;
+                width: 14vw;
                 height: 4vh;
                 border-radius: 5px;
                 font-size: 2vh;
@@ -113,14 +113,25 @@
                     cursor: pointer;    
                 }
             .notas{
-                display: flex;
+                display: none;
                 width: 17vw;
                 flex-direction: column;
                 margin-top: 1vh;
+                align-items: center;
                 overflow-y: overlay;
             }
                 .CardNtInput{
-                    display: flex;     
+                    text-align: center;
+                    width: 11vw;
+                    font-size: 2vh;
+                    background-color: var(--corC);
+                    color: var(--corA);
+                    padding: 0.5vh;
+                    font-family: cursive;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    margin-bottom: 1vh;
+                    border: none;
                 }
 .resultTab{
     width: 61vw;

@@ -21,19 +21,9 @@
             <div class="addBd" id="addBd">
                 <label class="lb" id="labelB" style="margin-left: -40vw;">Stage 2</label>
                 <div class="form" id="inputs">
-                	<div class="Card">
-                		<input type="text" id="Nome0" placeholder="Nome do aluno" class="CardNmInput">
-                		<button class="btnCard" onclick="">Definir Notas</button>
-                		<div class="notas" id="">
-                			<input type="text" id="Nm0nt0" placeholder="Nota 1" class="CardNtInput">
-                			<input type="text" id="Nm0nt1" placeholder="Nota 2" class="CardNtInput">
-                			<input type="text" id="Nm0nt0" placeholder="Nota 1" class="CardNtInput">
-                			<input type="text" id="Nm0nt1" placeholder="Nota 2" class="CardNtInput">
-                		</div>
-                	</div>
                 </div>
-                <button class="btn">Próximo Passo</button>
-                <button class="btn">Voltar</button>
+                <button class="btn" onclick="FormInc2()">Próximo Passo</button>
+                <button class="btn" onclick="Back()">Voltar</button>
             </div>
             <div class="resultTab" id="resultTab">
                 <label class="lb" id="labelC" style="margin-left: -32vw;">Stage 3</label>
@@ -54,6 +44,19 @@
 				0,
 				0
 			];
+			function most(btn, id, fun){
+				let div = document.querySelector(id);
+				let textBtnF = fun==0? 'V':'∆';
+				if(fun==0){
+					div.style.display = 'flex';
+				}else{
+					div.style.display = 'none';
+				}
+				var funMod = fun==0? 1:0;
+				let onclick = "most(this, '"+id+"', "+funMod+")";
+				btn.setAttribute("onclick", onclick);
+				btn.innerHTML = "Definir Notas "+textBtnF;
+			}
 			function indexcolorLb(lb, divs, lbes){
 				let Divs = [
 					document.querySelector(divs[0]),
@@ -84,16 +87,22 @@
 				//notas
 				qt[1] = document.querySelector('#nrmnotas').value ==''? 1:document.querySelector('#nrmnotas').value;
 
+				let divScipt = document.querySelector('#inputs');
 				for (var i=0; i<qt[0]; i++) {
-					var num = i+1;
-
-					alert(num);
-				};
-
-				for (var i=0; i<qt[1]; i++) {
-					var num2 = i+1;
-
-					alert(num2);
+					divScipt.innerHTML += `
+						<div class="Card">
+	                		<input type="text" id="Nome`+i+`" placeholder="Nome do aluno" class="CardNmInput">
+	                		<button class="btnCard" onclick="most(this, '#divOcul`+i+`', 0)">Definir Notas ∆</button>
+	                		<div class="notas" id="divOcul`+i+`">
+	                		</div>
+	                	</div>
+					`;
+					let idNotas = document.querySelector('#divOcul'+i);
+					for(var i2=0; i2<qt[1]; i2++){
+						idNotas.innerHTML += `
+							<input type="number" id="Nm`+i+`nt`+i2+`" placeholder="Nota `+(i2+1)+`" class="CardNtInput" min="0" max="10">
+						`;
+					}
 				};
 			}
 		</script>
