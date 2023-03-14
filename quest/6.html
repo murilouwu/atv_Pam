@@ -13,9 +13,9 @@
                 <label class="lb lbActive" id="labelA">Stage 1</label>
                 <label class="title">Definir Sala:</label>
                 <i class="fa-solid fa-graduation-cap iconsimbolic"></i>
-                <input type="number" id="nrmalun" min="1" class="Input" placeholder="Numero de Alunos">
-                <input type="number" id="nrmnotas" min="1" class="Input" placeholder="Numero de Notas por Aluno">
-                <p class="palagrafy">media 7, nota de 0 a 10</p>
+                <input type="number" id="nrmalun" min="1" max="20" class="Input" placeholder="Numero de Alunos">
+                <input type="number" id="nrmnotas" min="1" max="10" class="Input" placeholder="Numero de Notas por Aluno">
+                <p class="palagrafy">media 7, nota de 0 a 10, limites a mais são por fimns de agilidade do sistema</p>
                 <button class="btn" onclick="FormInc()">Próximo Passo</button>
             </div>
             <div class="addBd" id="addBd">
@@ -23,15 +23,21 @@
                 <div class="form" id="inputs">
                 </div>
                 <button class="btn" onclick="FormInc2()">Próximo Passo</button>
-                <button class="btn" onclick="Back()">Voltar</button>
+                <button class="btn" onclick="Back(0)">Voltar</button>
             </div>
             <div class="resultTab" id="resultTab">
                 <label class="lb" id="labelC" style="margin-left: -32vw;">Stage 3</label>
-                <div class="table" id="table">
-
-                </div>
-                <div class="pages" id="pages">
-
+                <div class="scrollTable">
+                	<table class="table" id="table">
+					  <tr class="tbTr">
+					    <th class="tbTh">Company</th>
+					    <th class="tbTh">Contact</th>
+					  </tr>
+					  <tr class="tbTr">
+					    <td class="tbTd">Alfreds Futterkiste</td>
+					    <td class="tbTd">Maria Anders</td>
+					  </tr>
+					</table>
                 </div>
                 <button class="btn">Voltar</button>
             </div>
@@ -104,6 +110,24 @@
 						`;
 					}
 				};
+			}
+			function Back(fun){
+				let divScipt = document.querySelector('#inputs');
+				divScipt.innerHTML = '';
+				alunos = [];
+	            notas = [[]];
+				qt = [
+					0,
+					0
+				];
+				if(fun==0){
+					indexcolorLb('#label', ['#definic','#addBd', '#resultTab'], 0);
+				}else{
+					//indexcolorLb('#label', ['#definic','#addBd', '#resultTab'], 0);
+				};
+			};
+			function FormInc2(){
+				indexcolorLb('#label', ['#resultTab','#definic','#addBd'], 2);
 			}
 		</script>
 	</body>

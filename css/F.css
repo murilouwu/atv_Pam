@@ -145,3 +145,18 @@
     z-index: 1;
     position: absolute;
 }
+    .scrollTable{
+        display: flex;
+    }
+        .table{
+            display: flex;
+        }
+            .tbTr{
+                display: flex;
+            }
+                .tbTh{
+                    display: flex;
+                }
+                .tbTd{
+                    display: flex;
+                }
